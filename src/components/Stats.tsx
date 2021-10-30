@@ -5,9 +5,17 @@ import { StatBox } from "./StatBox";
 
 interface StatsProps {
   productiveTime: string;
+  itemsAdded: number;
+  itemsCompleted: number;
+  timesEdited: number;
 }
 
-export const Stats: React.FC<StatsProps> = ({ productiveTime }) => {
+export const Stats: React.FC<StatsProps> = ({
+  productiveTime,
+  itemsAdded,
+  itemsCompleted,
+  timesEdited,
+}) => {
   const max_width = `${
     (140 / 100) * Number(VIEWPORT_WIDTH.substr(0, VIEWPORT_WIDTH.length - 2))
   }px`;
@@ -22,27 +30,27 @@ export const Stats: React.FC<StatsProps> = ({ productiveTime }) => {
       <Divider mt={6} mb={6} />
       <StatGroup>
         <StatBox
-          title="Spent"
+          title="Active Session"
           value={productiveTime}
           type="increase"
           percentage="23.36%"
         />
         <StatBox
-          title="Clicked"
-          value="45"
+          title="Added"
+          value={itemsAdded.toString() + " items"}
           type="decrease"
           percentage="9.05%"
         />
         <StatBox
-          title="Code length"
-          value="7.444 lines"
+          title="Completed"
+          value={itemsCompleted.toString() + " items"}
           type="increase"
           percentage="12.26%"
         />
 
         <StatBox
-          title="Bugs squashed"
-          value="4"
+          title="Edited"
+          value={timesEdited.toString() + " times"}
           type="decrease"
           percentage="124.05%"
         />

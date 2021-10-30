@@ -14,12 +14,20 @@ interface TaskFieldProps {
   TaskObj: Task;
   Tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  itemsCompleted: number;
+  setItemsCompleted: React.Dispatch<React.SetStateAction<number>>;
+  timesEdited: number;
+  setTimesEdited: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const TaskField: React.FC<TaskFieldProps> = ({
   Tasks,
   setTasks,
   TaskObj,
+  itemsCompleted,
+  setItemsCompleted,
+  timesEdited,
+  setTimesEdited,
 }) => {
   const EDITING_SCALE = 1.05;
   const UNSELECTED_OPACITY = 0.8;
@@ -56,6 +64,7 @@ export const TaskField: React.FC<TaskFieldProps> = ({
     setTasks(newTasks);
     setFieldAnimate({ ...fieldAnimate, scale: 1, opacity: UNSELECTED_OPACITY });
     setFieldEditing(false);
+    setTimesEdited(timesEdited + 1);
   };
 
   return (
@@ -95,6 +104,9 @@ export const TaskField: React.FC<TaskFieldProps> = ({
         size="sm"
         variant="ghost"
         onClick={() => {
+          setItemsCompleted(
+            TaskObj.isCompleted ? itemsCompleted - 1 : itemsCompleted + 1
+          );
           setTasks(
             Tasks.map((task) =>
               task.id !== TaskObj.id
@@ -107,7 +119,7 @@ export const TaskField: React.FC<TaskFieldProps> = ({
         }}
       />
       <IconButton
-        aria-label="done"
+        aria-label="close"
         icon={<CloseIcon />}
         size="sm"
         variant="ghost"

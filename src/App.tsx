@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Center, ChakraProvider, Container } from "@chakra-ui/react";
+import { Center, ChakraProvider, Container } from "@chakra-ui/react";
 import { InputTask } from "./components/InputTask";
 import { TaskList } from "./components/TaskList";
 import { Wrapper } from "./components/Wrapper";
@@ -38,7 +38,9 @@ export const App: React.FC<AppProps> = ({ withLocalStorage = "true" }) => {
     getTimeDiff(timeStarted, new Date())
   );
 
-  console.log(productiveTime);
+  const [itemsAdded, setItemsAdded] = useState<number>(0);
+  const [itemsCompleted, setItemsCompleted] = useState<number>(0);
+  const [timesEdited, setTimesEdited] = useState<number>(0);
 
   clearInterval(interval);
   interval = setInterval(() => {
@@ -49,19 +51,33 @@ export const App: React.FC<AppProps> = ({ withLocalStorage = "true" }) => {
     <ChakraProvider theme={theme}>
       <Container>
         <Wrapper>
-          <InputTask Tasks={Tasks} setTasks={setTasks} />
-          <TaskList Tasks={Tasks} setTasks={setTasks} />
+          <InputTask
+            Tasks={Tasks}
+            setTasks={setTasks}
+            itemsAdded={itemsAdded}
+            setItemsAdded={setItemsAdded}
+          />
+          <TaskList
+            Tasks={Tasks}
+            setTasks={setTasks}
+            itemsCompleted={itemsCompleted}
+            setItemsCompleted={setItemsCompleted}
+            timesEdited={timesEdited}
+            setTimesEdited={setTimesEdited}
+          />
         </Wrapper>
       </Container>
 
       {/* make this into a footer */}
-      <Stats productiveTime={productiveTime} />
+      <Stats
+        productiveTime={productiveTime}
+        itemsAdded={itemsAdded}
+        itemsCompleted={itemsCompleted}
+        timesEdited={timesEdited}
+      />
 
       <Center>
         <ColorModeSwitcher />
-      </Center>
-      <Center>
-        <Button>new board</Button>
       </Center>
     </ChakraProvider>
   );

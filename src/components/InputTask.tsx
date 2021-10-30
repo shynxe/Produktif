@@ -8,9 +8,16 @@ import { MotionBox } from "./Motions";
 interface InputTaskProps {
   Tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  itemsAdded: number;
+  setItemsAdded: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const InputTask: React.FC<InputTaskProps> = ({ Tasks, setTasks }) => {
+export const InputTask: React.FC<InputTaskProps> = ({
+  Tasks,
+  setTasks,
+  itemsAdded,
+  setItemsAdded,
+}) => {
   const [TaskInput, setTaskInput] = useState<string>("");
 
   const taskInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +28,7 @@ export const InputTask: React.FC<InputTaskProps> = ({ Tasks, setTasks }) => {
     e.preventDefault();
     setTasks([...Tasks, new Task(TaskInput)]);
     setTaskInput("");
+    setItemsAdded(itemsAdded + 1);
   };
 
   return (

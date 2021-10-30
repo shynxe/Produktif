@@ -6,9 +6,20 @@ import { TaskField } from "./TaskField";
 interface TaskListProps {
   Tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  itemsCompleted: number;
+  setItemsCompleted: React.Dispatch<React.SetStateAction<number>>;
+  timesEdited: number;
+  setTimesEdited: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TaskList: React.FC<TaskListProps> = ({ Tasks, setTasks }) => {
+export const TaskList: React.FC<TaskListProps> = ({
+  Tasks,
+  setTasks,
+  itemsCompleted,
+  setItemsCompleted,
+  timesEdited,
+  setTimesEdited,
+}) => {
   return (
     <Box mt={8} mb={8}>
       {Tasks.map((task: Task) => {
@@ -18,6 +29,10 @@ export const TaskList: React.FC<TaskListProps> = ({ Tasks, setTasks }) => {
             setTasks={setTasks}
             TaskObj={task}
             key={task.id}
+            itemsCompleted={itemsCompleted}
+            setItemsCompleted={setItemsCompleted}
+            timesEdited={timesEdited}
+            setTimesEdited={setTimesEdited}
           />
         );
       })}
