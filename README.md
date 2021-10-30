@@ -1,5 +1,5 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+![Produktif](https://i.imgur.com/rsUM01Z.gif)
+
 
 ## Available Scripts
 
