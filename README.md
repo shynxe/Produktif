@@ -41,4 +41,4 @@ Change the color theme of the website depending on your preference.
 
 You can learn more about the animation library used for the effects at [Framer Motion](https://www.framer.com/docs/).
 
-To see more awesome projects, check out [my GitHub profile](https://github.com/shynxe).
+To see this awesome project in action, check out the [Produktif Website](https://produktive.netlify.app/).
